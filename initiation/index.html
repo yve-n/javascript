@@ -5,143 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Initiation javascript</title>
+    <style type=text/css>
+    #main {margin-top:20px;} 
+    .container{
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
+        width: 1000px;
+        background: red;
+        height: 50px;
+
+    }
+    
+    </style>
 </head>
 <body>
+    <div id="main" class="container"></div>
+    <div class="container"></div>
+    <div class="container"></div>
 <script>
-
-let persons ={
-    'moussa':{
-        name:'moussa ',
-        job: 'developer',
-        'technologies':['html', 'css', 'php','javascript'],
-        coast:600,
-        experience:5
-    },
-    'khalid':{
-        name:'khalid ',
-        job: 'developer',
-        'technologies':['php', 'nodejs','java'],
-        coast:800,
-        experience:8
-    },
-    'maha':{
-        name:'maha ',
-        job: 'developer',
-        'technologies':['php', 'angular', 'java','javascript'],
-        coast:500,
-        experience:2
+   let element= document.getElementById('main');
+    element.innerHTML ="un super contenu ";
+    let containers = document.getElementsByClassName('container');
+    console.log(element.innerHTML);
+    for (let i = 0; i < containers.length; i++) {
+        containers.item(i).innerHTML += " Hello world";   
     }
-}
-    
-    let getBestCandidate = function(technology){;
-    let developers=[];
-    let bestCandidatecoast = 0;
-    let bestCandidate =null;
-    
-    Object.keys(persons).forEach(id => {
-        if (persons[id].technologies.includes(technology)){
-            developers.push(persons[id]);
-        }
-        
-    });
-    
-    developers.forEach((nodejsDeveloper, iteration) => {
-        if(iteration === 0){
-            bestCandidatecoast =developers[0].coast;
-            bestCandidate = nodejsDeveloper;
-        }
-        if (nodejsDeveloper.coast < bestCandidatecoast){
-            bestCandidatecoast =developers[iteration].coast;
-            bestCandidate = nodejsDeveloper;
-        }
-    });
-  console.log(bestCandidate);
-}
-getBestCandidate("javascript");
+    // changer le css dans le js;
+    element.style.background='green';
 
-// trouver le meilleur candidat pour un projet Php sachant que 
-// exp 5 mettrait 35 jours
-// exp 8 mettrait 20 jours
-// exp 2 mettrait 50 jours
-
-// let phpDevelopers =[];
-// let bestphpcandidate=null;
-// let bestphpcandidateExp =0;
-// let joursProjet =[35,20,50];
-// expDeveloper=[];
-// Object.keys(persons).foreach(id=> {
-//     if(persons[id].technologies.includes('php')){
-//         phpDevelopers.push(persons[id]);
-//     }
-// })
-// phpDevelopers.foreach(phpdeveloper,iteration =>
-// {
-//     if (iteration === 0){
-//      bestphpcandidateExp = phpDevelopers[0].exp;
-//      bestphpcandidate = phpdeveloper;
-//     }
-// })
-// joursProjet.forEach(jourprojet =>
-//     {if (bestphpcandidateExp.math.min(joursProjet)){
-//         bestphpcandidate = phpdeveloper;
-// };
-
-
-
-// let nodejsDevelopers =[];
-//     let bestNodejsCandidatcoast =0;
-//     let bestNodejsCandidate =null;
-//     Objectkeys(persons).forEach(id => {
-//         if (persons[id].technologies.includes('nodejs')){
-//             nodejsDeveloper.push(persons[id]);
-//         }
-        
-//     });
-//     nodejsDevelopers.forEach(nodejsDeveloper,iteration) => {
-//         if(interation === 0){
-//             bestNodejsCandidatcoast =nodejsDeveloper[0].coast;
-//             bestNodejsCandidate = nodejsDeveloper;
-//         }
-//         if (nodejsDeveloper.coast < bestNodejsCandidatcoast){
-//             bestNodejsCandidatcoast =bestNodejsdevelopers[iteration].coast;
-//             bestNodejsCandidate = nodejsDeveloper;
-//         }
-//     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const prototypeSentence = "_name_a_age_ans";
-// let getSentence = function(name,age){
-//     return prototypeSentence
-//     .replace('_name_', name)
-//     .replace('_name_', name)
-// }
-
-
- 
-
-
-
-
-
-
-
-
-
-
- 
-
-    
+   console.log(containers);
 </script>
 </body>
+<!-- le querySelector ne renvoie qu'une seule valeur -->
 </html>
