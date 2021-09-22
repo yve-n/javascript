@@ -23,19 +23,27 @@
     <div id="main" class="container"></div>
     <div class="container"></div>
     <div class="container"></div>
+<script src="./jquery-3.6.0.js"></script>
 <script>
-   let element= document.getElementById('main');
-    element.innerHTML ="un super contenu ";
-    let containers = document.getElementsByClassName('container');
-    console.log(element.innerHTML);
-    for (let i = 0; i < containers.length; i++) {
-        containers.item(i).innerHTML += " Hello world";   
-    }
-    // changer le css dans le js;
-    element.style.background='green';
-
+    let nativeElement = document.getElementById('main');
+   let element = $('#main');
+   element.html('un super contenu');
+   let containers = $('.container');
+   containers.html("Hello world");
+   element.css('background', 'blue');
    console.log(containers);
+
+$('#main').on('click', function(event){
+    event.preventDefault();
+})
+
+
+
 </script>
 </body>
-<!-- le querySelector ne renvoie qu'une seule valeur -->
+<!-- le querySelector ne renvoie qu'une seule valeur
+
+
+
+-->
 </html>
