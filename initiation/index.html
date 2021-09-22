@@ -4,46 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Initiation javascript</title>
-    <style type=text/css>
-    #main {margin-top:20px;} 
-    .container{
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 10px;
-        width: 1000px;
-        background: red;
-        height: 50px;
-
-    }
-    
-    </style>
+    <title>Initiation javascript</title>   
 </head>
 <body>
-    <div id="main" class="container"></div>
-    <div class="container"></div>
-    <div class="container"></div>
+<form action="">
+<div>
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name">   
+</div>
+<div>
+    <label for="name">Age</label>
+    <input type="text" name="age" id="age">   
+</div>
+<div>
+    <input type="submit" name="person" value="envoyer">
+</div>
+</form>
+    
 <script src="./jquery-3.6.0.js"></script>
 <script>
-    let nativeElement = document.getElementById('main');
-   let element = $('#main');
-   element.html('un super contenu');
-   let containers = $('.container');
-   containers.html("Hello world");
-   element.css('background', 'blue');
-   console.log(containers);
-
-$('#main').on('click', function(event){
+$('form').on('submit',function(event){
     event.preventDefault();
+
+    let ageElement = $('#age');
+    ageElement.val(parseInt((ageElement).val()) + 10);
+
+    $(this).unbind('submit');
+    $(this).submit();
 })
-
-
-
+  
 </script>
 </body>
-<!-- le querySelector ne renvoie qu'une seule valeur
-
-
-
--->
 </html>
