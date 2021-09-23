@@ -8,93 +8,28 @@
 </head>
 
 <body>
+
     <script src="./jquery-3.6.0.js"></script>
-    <script>
-        const prototype =`
-        <table>
-            <thead>
-                <tr>
-                    _headers_
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    _body_
-                </tr>
-            </tbodyy>
-        </table>
-        `;
-    $.get('./person.json')
+    <script>  
+    
+    $.get('https://2i-js.iknsa.xyz/create-user.php')
     .then(function(response){
-        // console.log(response)
-        let headersTemplate ='';
-        let bodyTemplate ='';
-        let headers = Object.keys(response[0]);
-        headers.forEach(function(header){
-            headersTemplate += `<th>${header}</th>`
-        });
-        let template = prototype.replace('_headers_', headersTemplate)
-        
-        $.each(response,function(index,person){
-            bodyTemplate += `
-            <tr>
-                <td>${person.name}</td>
-                <td>${person.age}</td>
-                <td>${person.cars.join(',')}</td>
-            </tr>
-            `
-        })
-         template = template.replace('_body_', bodyTemplate)
-        $('body').prepend(template);
+        //    console.log(response);
+           $('body').prepend(response);
+
+           $('form').on('submit', function(event){
+               event.preventDefault();
+            $.post('https://2i-js.iknsa.xyz/create-user.php',$(this).serialize())
+            .then(function(result){
+                const backgroundColor = result.success ? 'green' : 'red';
+                $(form).prepend(
+                    `
+                    <p style="background": ${backgroundColor}>${result.message}</p>
+                    `    
+                );
+            })
+           })
     });
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//     response.forEach(id => {
-//         persons[person].push(person);
-//     });
-//    console.log(persons);
-//    function personData ()
-// {
-// 	$.getJSON('person.json', 
-// 			{			},		
-// 	);
-// }
-// let data =[]
-
-    
-    
     </script>
-   
 </body>
 </html>
