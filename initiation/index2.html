@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initiation javascript</title>   
+</head>
+<body>
+<form action="">
+<div>
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name">   
+</div>
+<div>
+    <label for="dob">Date of birth</label>
+    <select name="dob" id="dob"></select>
+</div>
+<div>
+    <label for="cars" id="cars">cars</label>
+    <select name="cars" id="cars">
+    </select>
+</div>
+<div>
+    <label for="portes-2">NOmbre de porte</label>
+    2: <input type="radio" name="portes" id="portes-2" value="2">
+    <label for="portes-4">NOmbre de porte</label>
+    4: <input type="radio" name="portes" id="portes-4" value="4">
+</div>
+
+<div>
+    <input type="submit" name="person" value="envoyer">
+</div>
+</form>
+    
+<script src="./jquery-3.6.0.js"></script>
+<script>
+
+let template = `
+<div>
+    <label for ="age">Age </label>
+    <input type = "text" name="age" id="age">
+</div>
+`;
+$('#name').parent().after(template);
+
+for (var i = 1980; i <= 2002; i++) {
+    
+      $('#dob').append(`<option value = ${i}> ${i} </option>`);
+    }
+
+    $('input [type=radio] name=portes').on('change', function (event){
+        $(this).val();
+    })
+     
+
+
+const cars=[
+    { brand: 'Peugeot', make:'208', portes:2},
+    { brand: 'Renault', make:'500',portes:2},
+    { brand: 'citroen', make:'C3',portes:3},
+    { brand: 'Peugeot', make:'208',portes:2},
+    { brand: 'citroen', make:'C4',portes:4},
+    { brand: 'Peugeot', make:'308',portes:4},
+    { brand: 'Peugeot', make:'5008',portes:5},
+    { brand: 'Peugeot', make:'508',portes:4}
+]
+let getCarsList = function(portes){
+let sortedCars={};
+
+cars.forEach(car => {
+    if (sortedCars[car.brand] === undefined){
+        sortedCars[car.brand] =[];
+    }
+    sortedCars[car.brand].push(car);
+    });
+
+    Object.keys(sortedCars).forEach(brand => {
+        $('select').append(`<optgroup label='${brand}'> </optgroup>`);
+
+        sortedCars[brand].forEach( car => {
+            if (portes === undefined){
+                $(`optgroup[label=${brand}]`).append(
+                `<option value= '${car.make}'>${car.make}</option>`
+            )
+            }
+            if (parseInt(portes) === 2){
+                if(car.portes ===2){
+                    $(`optgroup[label=${brand}]`).append(
+                `<option value= '${car.make}'>${car.make}</option>`
+                )
+                }    
+            }
+            if (parseInt(portes) !== 2 && car.portes !== 2){
+                $(`optgroup[label=${brand}]`).append(
+                `<option value= '${car.make}'>${car.make}</option>`
+            )
+            }
+            
+        })
+    });
+}
+    $('select').append('<option value="null" >choisir un vehicule</option>');
+
+    $('select').change(function() {
+        if ($(this).val() === 'null') {
+        $(this).css({"background" : "red"});
+        }
+    });
+   
+</script>
+<!-- afficher les voitures  
+    que les voitures soient groupées par marque  
+    si je coche le bouton 2 n'afficher que les voitures à 2 portes
+    sinon afficher les autres
+    afficher une option null par défaut avec choisir un vehicule 
+    quand l'option null est selectionné mettre le background en rouge
+-->
+</body>
+</html>
